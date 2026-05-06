@@ -1,47 +1,63 @@
-// UC8: Continuous Turn-Based Game Loop
+// UC9: Check Winning Condition
 
 public class TicTac {
 
-    // Variable to track player turn
-    static boolean isHumanTurn = true;
-
-    // Variable to track game status
-    static boolean gameOver = false;
+    // Tic Tac Toe board
+    static char[][] board = {
+            {'X', 'X', 'X'},
+            {'O', ' ', 'O'},
+            {' ', ' ', ' '}
+    };
 
     // Main method
     public static void main(String[] args) {
 
-        int turnCount = 0;
+        // Check if player X has won
+        System.out.println(hasWon('X'));
+    }
 
-        // Continuous game loop
-        while (!gameOver) {
+    // Method to check winning condition
+    static boolean hasWon(char symbol) {
 
-            // Human player turn
-            if (isHumanTurn) {
-                System.out.println("Human Player Turn");
+        // Check rows
+        for (int i = 0; i < 3; i++) {
+
+            if (board[i][0] == symbol &&
+                    board[i][1] == symbol &&
+                    board[i][2] == symbol) {
+
+                return true;
             }
-
-            // Computer player turn
-            else {
-                System.out.println("Computer Player Turn");
-            }
-
-            // Simulate move played
-            System.out.println("Move Played");
-
-            // Increase turn count
-            turnCount++;
-
-            // Check win or draw condition
-            if (turnCount == 9) {
-                gameOver = true;
-                System.out.println("Game Draw");
-            }
-
-            // Switch turns
-            isHumanTurn = !isHumanTurn;
         }
 
-        System.out.println("Game Over");
+        // Check columns
+        for (int i = 0; i < 3; i++) {
+
+            if (board[0][i] == symbol &&
+                    board[1][i] == symbol &&
+                    board[2][i] == symbol) {
+
+                return true;
+            }
+        }
+
+        // Check main diagonal
+        if (board[0][0] == symbol &&
+                board[1][1] == symbol &&
+                board[2][2] == symbol) {
+
+            return true;
+        }
+
+        // Check opposite diagonal
+        if (board[0][2] == symbol &&
+                board[1][1] == symbol &&
+                board[2][0] == symbol) {
+
+            return true;
+        }
+
+        // No winning condition found
+        return false;
     }
 }
