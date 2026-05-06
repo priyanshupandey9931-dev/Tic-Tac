@@ -1,26 +1,44 @@
+// UC5: Validate User Move
+// TicTac class validates whether a move is inside the board boundaries
+// and whether the selected cell is empty.
+
 public class TicTac {
 
+    // Tic Tac Toe board
+    static char[][] board = {
+            {'X', 'O', 'X'},
+            {'O', ' ', 'X'},
+            {' ', 'O', ' '}
+    };
+
+    // Main method
     public static void main(String[] args) {
 
-        int slot = 7; // example input
+        int row = 1;
+        int col = 1;
 
-        int row = getRowFromSlot(slot);
-        int col = getColFromSlot(slot);
-
-        System.out.println("Slot: " + slot);
-        System.out.println("Row: " + row);
-        System.out.println("Column: " + col);
+        // Check move validity
+        if (isValidMove(row, col)) {
+            System.out.println("Move Accepted");
+        } else {
+            System.out.println("Move Rejected");
+        }
     }
 
-    // Convert slot to row index (0–2)
-    static int getRowFromSlot(int slot) {
-        int index = slot - 1;   // convert to 0-based
-        return index / 3;
-    }
+    // Method to validate move
+    static boolean isValidMove(int row, int col) {
 
-    // Convert slot to column index (0–2)
-    static int getColFromSlot(int slot) {
-        int index = slot - 1;   // convert to 0-based
-        return index % 3;
+        // Boundary checking
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+
+        // Check if cell is empty
+        if (board[row][col] != ' ') {
+            return false;
+        }
+
+        // Move is valid
+        return true;
     }
 }
