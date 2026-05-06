@@ -1,25 +1,62 @@
-// UC6: Place Move on Board
-// TicTac class places a player's symbol on the board.
+// UC7: Computer Makes a Random Move (Easy Level)
+
+import java.util.Random;
 
 public class TicTac {
 
     // Tic Tac Toe board
-    static char[][] board = new char[3][3];
+    static char[][] board = {
+            {'X', ' ', 'O'},
+            {' ', 'X', ' '},
+            {' ', ' ', ' '}
+    };
+
+    // Computer symbol
+    static char computerSymbol = 'O';
 
     // Main method
     public static void main(String[] args) {
 
-        // Place symbol X at row 0, column 0
-        placeMove(0, 0, 'X');
+        // Computer makes a move
+        computerMove();
 
-        // Print updated board cell
-        System.out.println("Symbol at [0][0] = " + board[0][0]);
+        // Print updated board
+        printBoard();
     }
 
-    // Method to place move on board
-    static void placeMove(int row, int col, char symbol) {
+    // Method for computer random move
+    static void computerMove() {
 
-        // Update board with symbol
-        board[row][col] = symbol;
+        Random random = new Random();
+
+        while (true) {
+
+            // Generate random row and column
+            int row = random.nextInt(3);
+            int col = random.nextInt(3);
+
+            // Check if cell is empty
+            if (board[row][col] == ' ') {
+
+                // Place computer symbol
+                board[row][col] = computerSymbol;
+
+                System.out.println("Computer placed O at: " + row + ", " + col);
+                break;
+            }
+        }
+    }
+
+    // Method to print board
+    static void printBoard() {
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+
+            System.out.println();
+        }
     }
 }
