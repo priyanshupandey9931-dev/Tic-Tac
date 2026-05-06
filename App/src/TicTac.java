@@ -1,37 +1,26 @@
-import java.util.Random;
-
 public class TicTac {
 
-    static String currentPlayer;
-    static char humanSymbol;
-    static char computerSymbol;
-
     public static void main(String[] args) {
-        tossAndAssignSymbols();
-        displayTossResult();
+
+        int slot = 7; // example input
+
+        int row = getRowFromSlot(slot);
+        int col = getColFromSlot(slot);
+
+        System.out.println("Slot: " + slot);
+        System.out.println("Row: " + row);
+        System.out.println("Column: " + col);
     }
 
-    // Toss logic to decide first player and assign symbols
-    static void tossAndAssignSymbols() {
-        Random rand = new Random();
-        int toss = rand.nextInt(2); // 0 or 1
-
-        if (toss == 0) {
-            currentPlayer = "Human";
-            humanSymbol = 'X';
-            computerSymbol = 'O';
-        } else {
-            currentPlayer = "Computer";
-            humanSymbol = 'O';
-            computerSymbol = 'X';
-        }
+    // Convert slot to row index (0–2)
+    static int getRowFromSlot(int slot) {
+        int index = slot - 1;   // convert to 0-based
+        return index / 3;
     }
 
-    // Display result
-    static void displayTossResult() {
-        System.out.println("Toss Result:");
-        System.out.println("First Player: " + currentPlayer);
-        System.out.println("Human Symbol: " + humanSymbol);
-        System.out.println("Computer Symbol: " + computerSymbol);
+    // Convert slot to column index (0–2)
+    static int getColFromSlot(int slot) {
+        int index = slot - 1;   // convert to 0-based
+        return index % 3;
     }
 }
