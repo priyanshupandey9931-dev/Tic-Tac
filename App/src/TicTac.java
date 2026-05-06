@@ -1,24 +1,37 @@
+import java.util.Random;
+
 public class TicTac {
 
+    static String currentPlayer;
+    static char humanSymbol;
+    static char computerSymbol;
+
     public static void main(String[] args) {
+        tossAndAssignSymbols();
+        displayTossResult();
+    }
 
-        // Create 3x3 board
-        char[][] board = new char[3][3];
+    // Toss logic to decide first player and assign symbols
+    static void tossAndAssignSymbols() {
+        Random rand = new Random();
+        int toss = rand.nextInt(2); // 0 or 1
 
-        // Initialize all cells with '-'
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
+        if (toss == 0) {
+            currentPlayer = "Human";
+            humanSymbol = 'X';
+            computerSymbol = 'O';
+        } else {
+            currentPlayer = "Computer";
+            humanSymbol = 'O';
+            computerSymbol = 'X';
         }
+    }
 
-        // Print the board
-        System.out.println("Empty Tic-Tac-Toe Board:");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
-        }
+    // Display result
+    static void displayTossResult() {
+        System.out.println("Toss Result:");
+        System.out.println("First Player: " + currentPlayer);
+        System.out.println("Human Symbol: " + humanSymbol);
+        System.out.println("Computer Symbol: " + computerSymbol);
     }
 }
