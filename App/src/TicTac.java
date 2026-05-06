@@ -1,63 +1,37 @@
-// UC9: Check Winning Condition
+// UC10: Detect Draw Condition
 
 public class TicTac {
 
     // Tic Tac Toe board
     static char[][] board = {
-            {'X', 'X', 'X'},
-            {'O', ' ', 'O'},
-            {' ', ' ', ' '}
+            {'X', 'O', 'X'},
+            {'X', 'O', 'O'},
+            {'O', 'X', 'X'}
     };
 
     // Main method
     public static void main(String[] args) {
 
-        // Check if player X has won
-        System.out.println(hasWon('X'));
+        // Check draw condition
+        System.out.println(isDraw());
     }
 
-    // Method to check winning condition
-    static boolean hasWon(char symbol) {
+    // Method to detect draw
+    static boolean isDraw() {
 
-        // Check rows
-        for (int i = 0; i < 3; i++) {
+        // Traverse board to check empty cells
+        for (int r = 0; r < 3; r++) {
 
-            if (board[i][0] == symbol &&
-                    board[i][1] == symbol &&
-                    board[i][2] == symbol) {
+            for (int c = 0; c < 3; c++) {
 
-                return true;
+                // If empty cell found
+                if (board[r][c] == ' ') {
+                    return false;
+                }
             }
         }
 
-        // Check columns
-        for (int i = 0; i < 3; i++) {
-
-            if (board[0][i] == symbol &&
-                    board[1][i] == symbol &&
-                    board[2][i] == symbol) {
-
-                return true;
-            }
-        }
-
-        // Check main diagonal
-        if (board[0][0] == symbol &&
-                board[1][1] == symbol &&
-                board[2][2] == symbol) {
-
-            return true;
-        }
-
-        // Check opposite diagonal
-        if (board[0][2] == symbol &&
-                board[1][1] == symbol &&
-                board[2][0] == symbol) {
-
-            return true;
-        }
-
-        // No winning condition found
-        return false;
+        // No empty cells found
+        return true;
     }
 }
