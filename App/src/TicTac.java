@@ -1,62 +1,47 @@
-// UC7: Computer Makes a Random Move (Easy Level)
-
-import java.util.Random;
+// UC8: Continuous Turn-Based Game Loop
 
 public class TicTac {
 
-    // Tic Tac Toe board
-    static char[][] board = {
-            {'X', ' ', 'O'},
-            {' ', 'X', ' '},
-            {' ', ' ', ' '}
-    };
+    // Variable to track player turn
+    static boolean isHumanTurn = true;
 
-    // Computer symbol
-    static char computerSymbol = 'O';
+    // Variable to track game status
+    static boolean gameOver = false;
 
     // Main method
     public static void main(String[] args) {
 
-        // Computer makes a move
-        computerMove();
+        int turnCount = 0;
 
-        // Print updated board
-        printBoard();
-    }
+        // Continuous game loop
+        while (!gameOver) {
 
-    // Method for computer random move
-    static void computerMove() {
-
-        Random random = new Random();
-
-        while (true) {
-
-            // Generate random row and column
-            int row = random.nextInt(3);
-            int col = random.nextInt(3);
-
-            // Check if cell is empty
-            if (board[row][col] == ' ') {
-
-                // Place computer symbol
-                board[row][col] = computerSymbol;
-
-                System.out.println("Computer placed O at: " + row + ", " + col);
-                break;
-            }
-        }
-    }
-
-    // Method to print board
-    static void printBoard() {
-
-        for (int i = 0; i < 3; i++) {
-
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
+            // Human player turn
+            if (isHumanTurn) {
+                System.out.println("Human Player Turn");
             }
 
-            System.out.println();
+            // Computer player turn
+            else {
+                System.out.println("Computer Player Turn");
+            }
+
+            // Simulate move played
+            System.out.println("Move Played");
+
+            // Increase turn count
+            turnCount++;
+
+            // Check win or draw condition
+            if (turnCount == 9) {
+                gameOver = true;
+                System.out.println("Game Draw");
+            }
+
+            // Switch turns
+            isHumanTurn = !isHumanTurn;
         }
+
+        System.out.println("Game Over");
     }
 }
